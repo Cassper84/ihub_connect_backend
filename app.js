@@ -16,6 +16,7 @@ const notificationRoutes = require("./routes/notification");
 const messageRoutes = require("./routes/message");
 const reactionRoutes = require("./routes/reaction");
 const readReceiptRoutes = require("./routes/readReceipt");
+const iperformanceCategoryRoutes = require("./routes/iperformance/category");
 
 
 function connectToDatabase() {
@@ -59,7 +60,7 @@ connectToDatabase();
 
 app.use(
   cors({
-    origin: process.env.frontend_domain,
+    origin: "*",
     methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true,
   })
@@ -83,6 +84,7 @@ app.use("/notifications", notificationRoutes);
 app.use("/chat", messageRoutes);
 app.use("/reaction", reactionRoutes);
 app.use("/readReceipt", readReceiptRoutes);
+app.use("/iperformance/category", iperformanceCategoryRoutes);
 
 
 
