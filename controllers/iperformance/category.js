@@ -59,17 +59,17 @@ exports.updateCategory = async (req, res) => {
     try {
         const { id } = req.params;
         const { title, description } = req.body;
+        console.log("body: ", req.body)
 
-        const category = await Category.findById(id);
+       const category = await Category.findByIdAndUpdate(id, {
+        title,
+        description
+       }, {new: true})
 
-        if (!category) {
-            return res.status(404).json({ message: 'Category not found.' });
-        }
+       if (!category) {
+        return res.status(404).json({message: "Category not found"})
+       }
 
-        if (title) category.title = title;
-        if (description) category.description = description;
-
-        await category.save();
 
         res.status(200).json({
             message: 'Category updated successfully.',
