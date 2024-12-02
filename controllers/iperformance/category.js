@@ -59,7 +59,6 @@ exports.updateCategory = async (req, res) => {
     try {
         const { id } = req.params;
         const { title, description } = req.body;
-        console.log("body: ", req.body)
 
        const category = await Category.findByIdAndUpdate(id, {
         title,
