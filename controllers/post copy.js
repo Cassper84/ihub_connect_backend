@@ -2,18 +2,6 @@ const Post = require('../models/post');
 const User = require('../models/user');
 const fs = require('fs');
 
-exports.getLatestPosts = async (req, res, next) => {
-    try {
-        const latestPosts = await Post.find()
-            .sort({ time: -1 }) // Sort by latest
-            .limit(3);         // Fetch only 3 posts
-        res.status(200).json(latestPosts);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Unable to fetch latest posts" });
-    }
-};
-
 exports.getPosts = async (req, res, next) => {
     const postsPerFetch = 10;
     const count = Number(req.query.count) || 0;
